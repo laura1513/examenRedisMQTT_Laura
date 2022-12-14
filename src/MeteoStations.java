@@ -54,7 +54,7 @@ public class MeteoStations {
 
             dia = (int) (1 + (Math.random()*29));
             mes = (int) (1 + (Math.random()*12));
-            anyo = (int) (2000 + (Math.random()*2022));
+            anyo = 2022;
             fecha = String.valueOf(dia) + "/" + String.valueOf(mes) + "/" + String.valueOf(anyo);
 
             h = (int) (Math.random()*23);
