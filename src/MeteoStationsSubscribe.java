@@ -1,7 +1,9 @@
 import org.eclipse.paho.client.mqttv3.*;
+import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -9,7 +11,6 @@ public class MeteoStationsSubscribe {
     public static void main(String[] args)  throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter topic: ");
-
         String topic = scanner.nextLine();
 
         String publisherId = UUID.randomUUID().toString();
@@ -19,6 +20,7 @@ public class MeteoStationsSubscribe {
         } catch (MqttException e) {
             throw new RuntimeException(e);
         }
+
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setCleanSession(true);
@@ -48,10 +50,15 @@ public class MeteoStationsSubscribe {
 
         });
 
+
         try {
             publisher.subscribe(topic, 0);
         } catch (MqttException e) {
             throw new RuntimeException(e);
         }
+
     }
+
+
+
 }
